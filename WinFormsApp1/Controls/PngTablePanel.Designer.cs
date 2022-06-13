@@ -1,13 +1,13 @@
-﻿namespace WinFormsApp1
+﻿namespace WinFormsApp1.Controls
 {
-    partial class Form1
+    partial class PngTablePanel
     {
-        /// <summary>
+        /// <summary> 
         /// 필수 디자이너 변수입니다.
         /// </summary>
         private System.ComponentModel.IContainer components = null;
 
-        /// <summary>
+        /// <summary> 
         /// 사용 중인 모든 리소스를 정리합니다.
         /// </summary>
         /// <param name="disposing">관리되는 리소스를 삭제해야 하면 true이고, 그렇지 않으면 false입니다.</param>
@@ -20,41 +20,33 @@
             base.Dispose(disposing);
         }
 
-        #region Windows Form 디자이너에서 생성한 코드
+        #region 구성 요소 디자이너에서 생성한 코드
 
-        /// <summary>
+        /// <summary> 
         /// 디자이너 지원에 필요한 메서드입니다. 
         /// 이 메서드의 내용을 코드 편집기로 수정하지 마세요.
         /// </summary>
         private void InitializeComponent()
         {
-            this.borderPanel1 = new WinFormsApp1.Controls.BorderPanel();
             this.SuspendLayout();
             // 
-            // borderPanel1
-            // 
-            this.borderPanel1.Location = new System.Drawing.Point(10, 10);
-            this.borderPanel1.Name = "borderPanel1";
-            this.borderPanel1.Size = new System.Drawing.Size(10, 10);
-            this.borderPanel1.TabIndex = 0;
-            // 
-            // Form1
+            // PngTablePanel
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.borderPanel1);
-            this.Name = "Form1";
-            this.Text = "Form1";
-            this.Load += new System.EventHandler(this.Form1_Load);
-            this.Resize += new System.EventHandler(this.Form1_Resize);
+            this.DoubleBuffered = true;
+            this.Name = "PngTablePanel";
+            this.Size = new System.Drawing.Size(124, 51);
+            this.Load += new System.EventHandler(this.PngTablePanel_Load);
+            this.Paint += new System.Windows.Forms.PaintEventHandler(this.PngTablePanel_Paint);
+            this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.PngTablePanel_MouseDown);
+            this.MouseMove += new System.Windows.Forms.MouseEventHandler(this.PngTablePanel_MouseMove);
+            this.MouseUp += new System.Windows.Forms.MouseEventHandler(this.PngTablePanel_MouseUp);
+            this.Resize += new System.EventHandler(this.PngTablePanel_Resize);
             this.ResumeLayout(false);
 
         }
 
         #endregion
-
-        private Controls.BorderPanel borderPanel1;
     }
 }
-

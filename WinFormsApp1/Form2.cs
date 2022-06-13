@@ -1,13 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Collections;
 
 namespace WinFormsApp1
 {
@@ -29,7 +22,7 @@ namespace WinFormsApp1
         private int nGap = 3;
 
 
-        private clsPanelList list = new clsPanelList();
+        private Controls.clsPanelList list = new Controls.clsPanelList();
 
         private Controls.TablePanel tablePanel;
 
@@ -213,38 +206,6 @@ namespace WinFormsApp1
         {
             string sMsg = string.Format("func_MouseMove [{0}] tag {1} point({2},{3})", nIndex, list[nIndex].Tag, list[nIndex].Location.X, list[nIndex].Location.Y);
             Console.WriteLine(sMsg);
-        }
-    }
-
-    public class clsPanelList : DictionaryBase
-    {
-        public void Add(int nIndex, Controls.TablePanel item)
-        {
-            try
-            {
-                Dictionary.Add(nIndex.ToString(), item);
-            }
-            catch
-            {
-
-            }
-        }
-
-        public void Remove(int nIndex)
-        {
-            Dictionary.Remove(nIndex.ToString());
-        }
-
-        public Controls.TablePanel this[int nIndex]
-        {
-            get
-            {
-                return (Controls.TablePanel)Dictionary[nIndex.ToString()];
-            }
-            set
-            {
-                Dictionary[nIndex.ToString()] = value;
-            }
         }
     }
 }

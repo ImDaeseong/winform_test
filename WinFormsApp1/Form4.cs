@@ -4,15 +4,15 @@ using System.Windows.Forms;
 
 namespace WinFormsApp1
 {
-    public partial class Form3 : Form
+    public partial class Form4 : Form
     {
         private int nborderGap = 10;
 
         private int m_nMaxTop = 0;
         private int m_nMaxLeft = 0;
 
-        private int nWidth = 60;//40;
-        private int nHeight = 48;//32;
+        private int nWidth = 169;//135//85//60//40;
+        private int nHeight = 134;//107//67//48//32;
 
         private int nTotalCount = 500;
         private int nDiv = 12;
@@ -23,33 +23,35 @@ namespace WinFormsApp1
         private int nMarginBottom = 10;
         private int nGap = 3;
 
-        private Controls.clsPanelList list = new Controls.clsPanelList();
+        private Controls.clsPngPanelList list = new Controls.clsPngPanelList();
 
-        private Controls.TablePanel tablePanel;
+        private Controls.PngTablePanel pngTablePanel;
 
-
-        public Form3()
+        public Form4()
         {
             InitializeComponent();
         }
-
         private void InitBorderPanel()
         {
             borderPanel1.Location = new Point(nborderGap, nborderGap);
             borderPanel1.Height = (ClientRectangle.Height - (nborderGap * 6));
             borderPanel1.Width = (ClientRectangle.Width - (nborderGap * 2));
         }
-
-        private void Form3_Load(object sender, EventArgs e)
+        private void Form4_Load(object sender, EventArgs e)
         {
             InitBorderPanel();
 
+            //이미지 사이즈 선택
+            for (int i = 1; i <= 5; i++)
+            {
+                comboBox1.Items.Add(i);
+            }
+            comboBox1.SelectedIndex = 0;
+            selectIndex(comboBox1.SelectedIndex);
+
             initControl();
 
-            setTablePanelItem();
-
-            textBox1.Text = String.Format("{0}", nWidth);
-            textBox2.Text = String.Format("{0}", nHeight);
+            setTablePanelItem();           
         }
 
         private void initControl()
@@ -71,13 +73,14 @@ namespace WinFormsApp1
             pnlMain.Size = xtraScrollableControl1.Size;
             pnlMain.AllowDrop = true;
 
+            
             //스크롤 넓이에 따른 가로 개수 정의
             nDiv = ((xtraScrollableControl1.Width - nWidth - (nMarginRight * 2)) / nWidth);
 
             //string sMsg = string.Format("nScrW {0} nScrH {1} nDiv {2}", nScrW, nScrH, nDiv);
             //Console.WriteLine(sMsg);
         }
-        
+
         private void setTablePanelItem()
         {
             TablePanel_Clear();
@@ -136,22 +139,22 @@ namespace WinFormsApp1
         {
             for (int i = 0; i < nTotalCount; i++)
             {
-                tablePanel = new Controls.TablePanel();
+                pngTablePanel = new Controls.PngTablePanel();
 
                 try
                 {
-                    tablePanel.Parent = pnlMain;
-                    tablePanel.TabIndex = i;
-                    tablePanel.Tag = string.Format("{0}", i + 1);
-                    tablePanel.delMouseDown += new Controls.TablePanel_MouseDown(func_MouseDown);
-                    tablePanel.delMouseMove += new Controls.TablePanel_MouseMove(func_MouseMove);
-                    tablePanel.delMouseUp += new Controls.TablePanel_MouseUp(func_MouseUp);
+                    pngTablePanel.Parent = pnlMain;
+                    pngTablePanel.TabIndex = i;
+                    pngTablePanel.Tag = string.Format("{0}", i + 1);
+                    pngTablePanel.delMouseDown += new Controls.PngTablePanel_MouseDown(func_MouseDown);
+                    pngTablePanel.delMouseMove += new Controls.PngTablePanel_MouseMove(func_MouseMove);
+                    pngTablePanel.delMouseUp += new Controls.PngTablePanel_MouseUp(func_MouseUp);
 
-                    tablePanel.AllowDrop = true;
-                    tablePanel.Enabled = true;
-                    tablePanel.Visible = true;
+                    pngTablePanel.AllowDrop = true;
+                    pngTablePanel.Enabled = true;
+                    pngTablePanel.Visible = true;
 
-                    list.Add(i, tablePanel);
+                    list.Add(i, pngTablePanel);
                     list[i].BringToFront();
                 }
                 catch (Exception ex)
@@ -216,10 +219,40 @@ namespace WinFormsApp1
             Console.WriteLine(sMsg);
         }
 
+        private void selectIndex(int nSelect)
+        {
+            if (nSelect == 0)
+            {
+                nWidth = 169;
+                nHeight = 134;
+            }
+            else if (nSelect == 1)
+            {
+                nWidth = 135;
+                nHeight = 107;
+            }
+            else if (nSelect == 2)
+            {
+                nWidth = 85;
+                nHeight = 67;
+            }
+            else if (nSelect == 3)
+            {
+                nWidth = 60;
+                nHeight = 48;
+            }
+            else if (nSelect == 4)
+            {
+                nWidth = 40;
+                nHeight = 32;
+            }
+        }
+
         private void button1_Click(object sender, EventArgs e)
         {
-            nWidth = Convert.ToInt32(textBox1.Text);
-            nHeight = Convert.ToInt32(textBox2.Text);
+            if (comboBox1.SelectedIndex == -1) return;
+
+            selectIndex(comboBox1.SelectedIndex);
 
             //xtraScrollableControl1.Controls.Clear();
             //xtraScrollableControl1.Controls.Add(pnlMain);
@@ -228,8 +261,8 @@ namespace WinFormsApp1
             xtraScrollableControl1.HorizontalScroll.Value = 0;
 
             initControl();
-                        
+
             setTablePanelItem();
-        }
+        }        
     }
 }
