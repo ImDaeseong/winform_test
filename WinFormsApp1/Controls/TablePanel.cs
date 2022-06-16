@@ -8,12 +8,16 @@ namespace WinFormsApp1.Controls
     public delegate void TablePanel_MouseDown(int nIndex, MouseEventArgs e);
     public delegate void TablePanel_MouseMove(int nIndex, MouseEventArgs e);
     public delegate void TablePanel_MouseUp(int nIndex, MouseEventArgs e);
+    public delegate void TablePanel_MouseEnter(int nIndex, EventArgs e);
+    public delegate void TablePanel_MouseLeave(int nIndex, EventArgs e);
 
     public partial class TablePanel : UserControl
     {
         public TablePanel_MouseDown delMouseDown;
         public TablePanel_MouseMove delMouseMove;
         public TablePanel_MouseUp delMouseUp;
+        public TablePanel_MouseEnter delMouseEnter;
+        public TablePanel_MouseLeave delMouseLeave;
 
         private Color m_clrBorderColor = Color.Black;
         private Color m_clrContentColor = Color.White;
@@ -148,6 +152,18 @@ namespace WinFormsApp1.Controls
         private void TablePanel_MouseMove(object sender, MouseEventArgs e)
         {
             delMouseMove(m_nIndex, e);
+        }
+
+        private void TablePanel_MouseEnter(object sender, EventArgs e)
+        {
+            //마우스 포인터가 컨트롤 영역 안으로
+            delMouseEnter(m_nIndex, e);
+        }
+
+        private void TablePanel_MouseLeave(object sender, EventArgs e)
+        {
+            //마우스 포인터가 컨트롤 영역 밖으로
+            delMouseLeave(m_nIndex, e);
         }
     }
 }

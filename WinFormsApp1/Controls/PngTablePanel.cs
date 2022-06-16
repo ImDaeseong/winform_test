@@ -7,12 +7,16 @@ namespace WinFormsApp1.Controls
     public delegate void PngTablePanel_MouseDown(int nIndex, MouseEventArgs e);
     public delegate void PngTablePanel_MouseMove(int nIndex, MouseEventArgs e);
     public delegate void PngTablePanel_MouseUp(int nIndex, MouseEventArgs e);
+    public delegate void PngTablePanel_MouseEnter(int nIndex, EventArgs e);
+    public delegate void PngTablePanel_MouseLeave(int nIndex, EventArgs e);
 
     public partial class PngTablePanel : UserControl
     {
         public PngTablePanel_MouseDown delMouseDown;
         public PngTablePanel_MouseMove delMouseMove;
         public PngTablePanel_MouseUp delMouseUp;
+        public PngTablePanel_MouseEnter delMouseEnter;
+        public PngTablePanel_MouseLeave delMouseLeave;
 
         private Bitmap m_bBG = null;
 
@@ -106,6 +110,18 @@ namespace WinFormsApp1.Controls
             delMouseUp(m_nIndex, e);
         }
 
+        private void PngTablePanel_MouseEnter(object sender, EventArgs e)
+        {
+            //마우스 포인터가 컨트롤 영역 안으로
+            delMouseEnter(m_nIndex, e);
+        }
+
+        private void PngTablePanel_MouseLeave(object sender, EventArgs e)
+        {
+            //마우스 포인터가 컨트롤 영역 밖으로
+            delMouseLeave(m_nIndex, e);
+        }
+
         private void PngTablePanel_Resize(object sender, EventArgs e)
         {
             this.Invalidate();
@@ -148,7 +164,6 @@ namespace WinFormsApp1.Controls
             }
 
             g.Dispose();
-        } 
-
+        }
     }
 }

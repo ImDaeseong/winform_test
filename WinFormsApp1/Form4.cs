@@ -67,6 +67,8 @@ namespace WinFormsApp1
             this.xtraScrollableControl1.Dock = DockStyle.None;
             this.xtraScrollableControl1.Location = new System.Drawing.Point(nGap, nGap);
             this.xtraScrollableControl1.Size = new System.Drawing.Size(nScrW, nScrH);
+            this.xtraScrollableControl1.VerticalScroll.Value = 0;
+            this.xtraScrollableControl1.HorizontalScroll.Value = 0;
 
             //메인 패널
             pnlMain.Location = new Point(0, 0);
@@ -149,6 +151,8 @@ namespace WinFormsApp1
                     pngTablePanel.delMouseDown += new Controls.PngTablePanel_MouseDown(func_MouseDown);
                     pngTablePanel.delMouseMove += new Controls.PngTablePanel_MouseMove(func_MouseMove);
                     pngTablePanel.delMouseUp += new Controls.PngTablePanel_MouseUp(func_MouseUp);
+                    pngTablePanel.delMouseEnter += new Controls.PngTablePanel_MouseEnter(func_MouseEnter);
+                    pngTablePanel.delMouseLeave += new Controls.PngTablePanel_MouseLeave(func_MouseLeave);
 
                     pngTablePanel.AllowDrop = true;
                     pngTablePanel.Enabled = true;
@@ -204,21 +208,33 @@ namespace WinFormsApp1
         private void func_MouseDown(int nIndex, MouseEventArgs e)
         {
             string sMsg = string.Format("func_MouseDown [{0}] tag {1} point({2},{3})", nIndex, list[nIndex].Tag, list[nIndex].Location.X, list[nIndex].Location.Y);
-            Console.WriteLine(sMsg);
+            //Console.WriteLine(sMsg);
         }
 
         private void func_MouseUp(int nIndex, MouseEventArgs e)
         {
             string sMsg = string.Format("func_MouseUp [{0}] tag {1} point({2},{3})", nIndex, list[nIndex].Tag, list[nIndex].Location.X, list[nIndex].Location.Y);
-            Console.WriteLine(sMsg);
+            //Console.WriteLine(sMsg);
         }
 
         private void func_MouseMove(int nIndex, MouseEventArgs e)
         {
             string sMsg = string.Format("func_MouseMove [{0}] tag {1} point({2},{3})", nIndex, list[nIndex].Tag, list[nIndex].Location.X, list[nIndex].Location.Y);
+            //Console.WriteLine(sMsg);
+        }
+
+        private void func_MouseEnter(int nIndex, EventArgs e)
+        {
+            string sMsg = string.Format("func_MouseEnter [{0}] tag {1} point({2},{3})", nIndex, list[nIndex].Tag, list[nIndex].Location.X, list[nIndex].Location.Y);
             Console.WriteLine(sMsg);
         }
 
+        private void func_MouseLeave(int nIndex, EventArgs e)
+        {
+            string sMsg = string.Format("func_MouseLeave [{0}] tag {1} point({2},{3})", nIndex, list[nIndex].Tag, list[nIndex].Location.X, list[nIndex].Location.Y);
+            Console.WriteLine(sMsg);
+        }
+       
         private void selectIndex(int nSelect)
         {
             if (nSelect == 0)
@@ -253,12 +269,6 @@ namespace WinFormsApp1
             if (comboBox1.SelectedIndex == -1) return;
 
             selectIndex(comboBox1.SelectedIndex);
-
-            //xtraScrollableControl1.Controls.Clear();
-            //xtraScrollableControl1.Controls.Add(pnlMain);
-
-            xtraScrollableControl1.VerticalScroll.Value = 0;
-            xtraScrollableControl1.HorizontalScroll.Value = 0;
 
             initControl();
 

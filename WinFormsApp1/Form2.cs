@@ -59,6 +59,9 @@ namespace WinFormsApp1
             this.xtraScrollableControl1.Dock = DockStyle.None;
             this.xtraScrollableControl1.Location = new System.Drawing.Point(nGap, nGap);
             this.xtraScrollableControl1.Size = new System.Drawing.Size(nScrW, nScrH);
+            this.xtraScrollableControl1.VerticalScroll.Value = 0;
+            this.xtraScrollableControl1.HorizontalScroll.Value = 0;
+
 
             //메인 패널
             pnlMain.Location = new Point(0, 0);

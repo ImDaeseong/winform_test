@@ -38,6 +38,8 @@
             this.Name = "TablePanel";
             this.Size = new System.Drawing.Size(124, 51);
             this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.TablePanel_MouseDown);
+            this.MouseEnter += new System.EventHandler(this.TablePanel_MouseEnter);
+            this.MouseLeave += new System.EventHandler(this.TablePanel_MouseLeave);
             this.MouseMove += new System.Windows.Forms.MouseEventHandler(this.TablePanel_MouseMove);
             this.MouseUp += new System.Windows.Forms.MouseEventHandler(this.TablePanel_MouseUp);
             this.ResumeLayout(false);

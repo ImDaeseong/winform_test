@@ -40,6 +40,8 @@
             this.Load += new System.EventHandler(this.PngTablePanel_Load);
             this.Paint += new System.Windows.Forms.PaintEventHandler(this.PngTablePanel_Paint);
             this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.PngTablePanel_MouseDown);
+            this.MouseEnter += new System.EventHandler(this.PngTablePanel_MouseEnter);
+            this.MouseLeave += new System.EventHandler(this.PngTablePanel_MouseLeave);
             this.MouseMove += new System.Windows.Forms.MouseEventHandler(this.PngTablePanel_MouseMove);
             this.MouseUp += new System.Windows.Forms.MouseEventHandler(this.PngTablePanel_MouseUp);
             this.Resize += new System.EventHandler(this.PngTablePanel_Resize);
