@@ -182,7 +182,7 @@ namespace WinFormsApp1
                     int nLeft = nGapWidth * nWidth;
                     int nTop = nGapHeight * nHeight;
                     list[i].Left = nLeft + nMarginleft;
-                    list[i].Top = nTop + nMarginTop;
+                    list[i].Top = nTop + nMarginTop;                                            
                 }
 
                 m_nMaxTop = (m_nMaxTop > list[i].Top) ? m_nMaxTop : list[i].Top;

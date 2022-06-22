@@ -123,12 +123,9 @@ namespace WinFormsApp1.Controls
             Rectangle outerRect = new Rectangle(ClientRectangle.X, ClientRectangle.Y, ClientRectangle.Width - 1, ClientRectangle.Height - 1);
 
             int margin = 1;
-            int cornerRadius = 6;
-            if (ClientRectangle.Width < 50)
-            {
-                cornerRadius = 1;
-                margin = 0;
-            }
+
+            //모서리 각도 비율
+            int cornerRadius = ((outerRect.Width / 10) + (outerRect.Height / 10)) / 2;
 
             using (GraphicsPath outerPath = RoundedRectangle(outerRect, cornerRadius, margin))
             {

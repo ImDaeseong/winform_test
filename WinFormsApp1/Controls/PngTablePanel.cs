@@ -149,7 +149,13 @@ namespace WinFormsApp1.Controls
 
             //배경 이미지 설정
             bgImg = new Bitmap(Properties.Resources.bg1);
-            g.DrawImage(bgImg, 0, 0, this.Width, this.Height);
+
+            //이미지 크기 비율
+            double ratio = ((double)bgImg.Width / (double)this.Width);
+            int nReWidth = (int)((double)bgImg.Width / ratio);
+            int nReHeight = (int)((double)bgImg.Height / ratio);
+
+            g.DrawImage(bgImg, 0, 0, nReWidth, nReHeight);//g.DrawImage(bgImg, 0, 0, this.Width, this.Height);
 
             DrawText(g);
 
